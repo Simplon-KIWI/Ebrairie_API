@@ -8,5 +8,5 @@ const sequelize = new Sequelize(
   { host: config.db_host, dialect: 'mysql' }
 );
 const db = { sequelize, Sequelize };
-
+sequelize.sync();
 export default db;

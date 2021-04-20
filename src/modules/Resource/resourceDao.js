@@ -18,6 +18,7 @@ class ResourceDao extends Model {
     //define association here
     return this;
   }
+  
 };
 
 ResourceDao.init(db.sequelize);
