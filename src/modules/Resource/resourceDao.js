@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import db from '../../config/database';
 
-class RessourceDao extends Model {
+class ResourceDao extends Model {
   static init(sequelize) {
     return super.init(
       {
@@ -11,7 +11,7 @@ class RessourceDao extends Model {
         description: DataTypes.STRING,
         quantity: DataTypes.INTEGER,
       },
-      { sequelize, modelName: 'Ressource' }
+      { sequelize, modelName: 'Resource' }
     );
   }
   static associate(models) {
@@ -20,6 +20,6 @@ class RessourceDao extends Model {
   }
 };
 
-RessourceDao.init(db.sequelize);
+ResourceDao.init(db.sequelize);
 
-export default RessourceDao;
+export default ResourceDao;
