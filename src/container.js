@@ -3,12 +3,20 @@ import express, { Router } from 'express';
 import Server from './config/server';
 import config from './config/env';
 import ModelsTest from './modules/Borrow/borrowDao';
+import bcrypt from 'bcrypt';
+import {v4 as uuidv4} from 'uuid';
+import jwt from 'jsonwebtoken';
+import nodemailer from 'nodemailer';
 
 const container = createContainer();
 const router = Router();
 
 container.register({
   config: asValue(config),
+  bcrypt: asValue(bcrypt),
+  uuidv4: asValue(uuidv4),
+  jwt: asValue(jwt),
+  nodemailer: asValue(nodemailer),
   express: asValue(express),
   router: asValue(router),
 });
