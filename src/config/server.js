@@ -11,7 +11,7 @@ class Server {
   }
 
   initializeApplicationRouter(routes) {
-    this.app.use(routes);
+    // this.app.use(routes);
   }
 
   listen(port) {

@@ -1,3 +1,6 @@
-// To update after completing container.js
+import container from './src/container';
 
-// application.listen('8080');
+const application = container.resolve('server');
+const config = container.resolve('config');
+
+application.listen(config.app_port);
