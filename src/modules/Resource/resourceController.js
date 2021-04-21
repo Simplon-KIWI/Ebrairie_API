@@ -33,7 +33,18 @@ class ResourceController {
             console.error(err);
             res.status(400).json(err.message);
         }
-    } 
+    }
+
+    search = async (req, res) => {
+        try {
+            const searchedResources = await this.resourceService.search(req.params.value)
+            res.status(201).json(searchedResources);
+            res.send
+        } catch (err) {
+            console.error(err);
+            res.status(400).json(err.message);
+        }
+    }
 
  
 

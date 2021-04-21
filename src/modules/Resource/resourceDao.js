@@ -17,14 +17,7 @@ class ResourceDao extends Model {
   }
   static associate(models) {
     //define association here
-
-    this.belongsTo(
-      models.BorrowDao,{
-        foreignKey: {
-          name:"borrowId",
-      }
-      }
-    );
+    this.hasOne(models.Location, { foreignKey : 'location_id'})
     return this;
   }
   
