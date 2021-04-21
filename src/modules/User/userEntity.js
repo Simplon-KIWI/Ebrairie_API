@@ -18,6 +18,11 @@ class UserEntity {
     if (!this.role || this.role !== 'admin') return false;
     else return true;
   }
+
+  validate() {
+    if (!this.email || !this.password) return false;
+    else return true;
+  }
 }
 
 export default UserEntity;

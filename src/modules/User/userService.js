@@ -30,7 +30,7 @@ class UserService {
 
   async loginAdmin(userData) {
     const userEntity = new UserEntity(userData);
-    if (!userEntity.validateAdmin())
+    if (!userEntity.validate())
       throw new Error('User entity validation error: Not authorized');
     const user = await this.userRepo.findByEmail(userEntity);
     if (!user) throw new Error('Account do not exist');
