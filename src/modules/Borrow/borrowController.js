@@ -35,7 +35,7 @@ class BorrowController {
     // }
     getBorrowById = async (req, res) => {
         try {
-            let borrows = this.borrowService.getBorrowById(req.params);
+            let borrows = await this.borrowService.getBorrowById(req.params.borrowId);
 
             console.log("🚀 ~ file: borrowController.js ~ line 42 ~ BorrowController ~ getBorrowById= ~ borrows", borrows)
 

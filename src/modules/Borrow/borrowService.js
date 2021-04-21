@@ -20,13 +20,12 @@ class BorrowService {
     //     const newBorrow = await this.borrowRepo.returnResource(borrowEntity);
     //     return new BorrowEntity(newBorrow);
     // }
-    async getBorrowById() {
-        const borrows = await this.borrowRepo.findOne();
+    async getBorrowById(borrowId) {
+        const borrows = await this.borrowRepo.findOne(borrowId);
 
         console.log("****** enter in SERVICE borrows:", borrows)
-        // return borrows.map((allborrow) => new BorrowEntity(allborrow)
-        // );
-        return borrows
+        return borrows;
+        
     }
 }
 

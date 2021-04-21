@@ -12,7 +12,7 @@ class BorrowRepository {
     // async returnResource(borrowEntity) {
     //     return await TouchList.borrowDao.returnResource(borrowEntity);
     // }
-    async findOne() {
+    async findOne(borrowId) {
         console.log("_____ enter in REPO findOne")
         return await this.borrowDao.findOne({where: {id: borrowId}});
     }
