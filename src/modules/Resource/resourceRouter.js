@@ -9,6 +9,9 @@ class ResourceRouter {
         this.router.route('/resources')
             .get(resourceController.getAll)
             .post(resourceController.create);
+
+        this.router.route('/resources/search/:value')
+            .get(resourceController.search)
     }
 }
 

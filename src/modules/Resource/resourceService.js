@@ -15,6 +15,13 @@ class ResourceService {
         const newResource = await this.resourceRepo.create(resourceEntity);
         return new ResourceEntity(newResource);
     }
+
+    async search (value) {
+        const resultSearchResources = await this.resourceRepo.search(value);
+        resultSearchResources.map((resource) => new ResourceEntity(resource)); 
+        return resultSearchResources;
+        console.log(resources);
+    }
 }
 
 export default ResourceService;

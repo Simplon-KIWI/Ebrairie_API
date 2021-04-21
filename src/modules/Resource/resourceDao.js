@@ -16,6 +16,7 @@ class ResourceDao extends Model {
   }
   static associate(models) {
     //define association here
+    this.hasOne(models.Location, { foreignKey : 'location_id'})
     return this;
   }
   

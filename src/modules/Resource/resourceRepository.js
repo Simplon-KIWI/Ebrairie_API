@@ -1,4 +1,5 @@
 // import ResourceEntity from "./resourceEntity";
+import { Op } from "sequelize";
 
 class ResourceRepository {
     constructor({resourceDao}) {
@@ -11,6 +12,16 @@ class ResourceRepository {
 
     async create(resourceEntity) {
         return await this.resourceDao.create(resourceEntity);
+    }
+
+    async search(value) {
+        return await this.resourceDao.findAll({
+            where: {
+                title : {
+                    [Op.like] : `${value}%`
+                }
+            }
+        });
     }
 }
 
