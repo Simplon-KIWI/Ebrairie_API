@@ -9,7 +9,14 @@ class UserRepository {
     return await this.userDao.findAll();
   }
 
-  async create(userEntity) {
+  async createReader(userEntity) {
+    userEntity.id = this.uuidv4();
+    userEntity.password = '';
+    userEntity.role = 'reader';
+    return await this.userDao.create(userEntity);
+  }
+
+  async createAdmin(userEntity) {
     userEntity.id = this.uuidv4();
     const salt = this.bcrypt.genSaltSync(10);
     userEntity.password = this.bcrypt.hashSync(userEntity.password, salt);

@@ -15,7 +15,11 @@ class UserDao extends Model {
         firstname: { type: DataTypes.STRING, allowNull: false },
         email: { type: DataTypes.STRING, allowNull: false },
         password: { type: DataTypes.STRING, allowNull: false },
-        role: { type: DataTypes.STRING, allowNull: false },
+        role: {
+          type: DataTypes.ENUM('reader', 'admin'),
+          defaultValue: 'reader',
+          allowNull: false,
+        },
       },
       { sequelize, modelName: 'User' }
     );

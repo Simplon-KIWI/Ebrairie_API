@@ -8,8 +8,14 @@ class UserEntity {
     this.role = role;
   }
 
-  validate() {
+  validateReader() {
+    if (!this.email) return false;
+    else return true;
+  }
+
+  validateAdmin() {
     if (!this.email || !this.password) return false;
+    if (!this.role || this.role !== 'admin') return false;
     else return true;
   }
 }

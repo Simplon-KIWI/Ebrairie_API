@@ -16,9 +16,30 @@ class UserController {
 
   register = async (req, res) => {
     try {
-      console.log('timus', req.body)
       const user = await this.userService.register({ ...req.body });
       res.status(201).json(user);
+    } catch (err) {
+      console.error(err);
+      res.status(400).json(err.message);
+    }
+  };
+
+  registerAdmin = async (req, res) => {
+    try {
+      const user = await this.userService.registerAdmin({ ...req.body });
+      res.status(201).json(user);
+    } catch (err) {
+      console.error(err);
+      res.status(400).json(err.message);
+    }
+  };
+
+  loginAdmin = async (req, res) => {
+    try {
+      const user = await this.userService.loginAdmin({ ...req.body });
+      const token = await this.jwt.generateToken({ id: user.id });
+      res.cookie('auth-cookie', token, { maxAge: 3600 });
+      res.status(200).json(user);
     } catch (err) {
       console.error(err);
       res.status(400).json(err.message);
