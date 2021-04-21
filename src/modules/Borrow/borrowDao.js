@@ -5,8 +5,9 @@ class BorrowDao extends Model {
   static init(sequelize) {
     return super.init(
       {
-        userId: DataTypes.INTEGER,
-        resourceId: DataTypes.INTEGER,
+        userId: DataTypes.UUID,
+        resourceId: DataTypes.UUID,
+        resourceTitle: DataTypes.STRING,
         transaction: DataTypes.STRING,
       },
       { sequelize, modelName: 'Borrow' }

@@ -9,6 +9,9 @@ class BorrowRouter {
         this.router.route('/borrow')
             .get(borrowController.getAll)
             .post(borrowController.create);
+        this.router.route('/borrows/:borrowId')
+            .get(borrowController.getBorrowById);
+            // .patch(borrowController.returnResource);
     }
 }
 

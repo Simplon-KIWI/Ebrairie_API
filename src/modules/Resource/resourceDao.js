@@ -5,7 +5,7 @@ class ResourceDao extends Model {
   static init(sequelize) {
     return super.init(
       {
-        borrowId: DataTypes.INTEGER,
+        borrowId: DataTypes.UUID,
         title: DataTypes.STRING,
         page_number: DataTypes.INTEGER,
         publication_date: DataTypes.DATE,

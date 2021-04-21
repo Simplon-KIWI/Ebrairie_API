@@ -1,3 +1,5 @@
+const modelBorrowDao = require("../Borrow/borrowDao");
+
 class BorrowController {
     constructor({borrowService}) {
         this.borrowService  = borrowService;
@@ -20,6 +22,33 @@ class BorrowController {
             console.error(err);
             res.status(400).json(err.message);
         }
+    }
+    // returnResource = async (req, res) => {
+    //     try{
+    //         const data = req.body
+    //         const returnBorrow = await this.borrowService.returnResource(req.params.borrowId , data);
+    //         res.status(201).json({return : returnBorrow});
+    //     } catch (err) {
+    //         console.error(err);
+    //         res.status(400).json(err.message);
+    //     }
+    // }
+    getBorrowById = async (req, res) => {
+        try {
+            let borrows = this.borrowService.getBorrowById(req.params);
+
+            console.log("🚀 ~ file: borrowController.js ~ line 42 ~ BorrowController ~ getBorrowById= ~ borrows", borrows)
+
+            if (borrows) {
+               console.log("PLEASE WORK")
+                res.status(201).json({ borrows: borrows })   
+            }
+
+        } catch (err) {
+            console.error(err);
+            res.status(400).json(err.message);
+        }
+       
     }
 }
 

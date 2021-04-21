@@ -2,6 +2,7 @@ import { createContainer, Lifetime, asClass, asValue } from 'awilix';
 import express, { Router } from 'express';
 import Server from './config/server';
 import config from './config/env';
+import ModelsTest from './modules/Borrow/borrowDao';
 
 const container = createContainer();
 const router = Router();
@@ -36,10 +37,22 @@ const routesName = Object.keys(container.registrations).filter((item) =>
 );
 const routes = routesName.map((route) => container.resolve(route));
 
+
+
+// Association models
+const Sequelize = require('sequelize');
+
+const modelName = Object.keys(container.registrations).filter((item) =>
+  item.match(/Router$/g)
+);
+const ModelsTest2 = modelName.map((model) => container.resolve(model));
+
+
 // register all the routes and the server
 container.register({
   routes: asValue(routes),
   server: asClass(Server).singleton(),
+  models: asClass(ModelsTest),
 });
 
 export default container;
