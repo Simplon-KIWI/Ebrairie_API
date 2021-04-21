@@ -8,6 +8,7 @@ class ResourceRouter {
     initializeRoutes({resourceController}) {
         this.router.route('/resources')
             .get(resourceController.getAll)
+            .get(resourceController.getOne)
             .post(resourceController.create);
     }
 }
