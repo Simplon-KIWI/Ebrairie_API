@@ -14,7 +14,7 @@ class LocationService {
         const location = await this.locationRepo.getOne(id);
         return new LocationEntity(location)
     }
-
+//
     async create(locationData) {
         const locationEntity = new LocationEntity(locationData);
         const newLocation = await this.locationRepo.create(locationEntity);
