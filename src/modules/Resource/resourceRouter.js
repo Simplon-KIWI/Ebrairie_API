@@ -13,6 +13,9 @@ class ResourceRouter {
         
         this.router.route('/resources/:id')
         .get(resourceController.getOne)
+
+        this.router.route('/resources/search/:value')
+            .get(resourceController.search)
     }
 }
 
