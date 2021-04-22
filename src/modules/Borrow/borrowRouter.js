@@ -1,14 +1,14 @@
 class BorrowRouter {
-    constructor({router, borrowController}) {
+    constructor({router, auth, csrfMiddleware, borrowController}) {
         this.router = router;
-        this.initializeRoutes({borrowController})
+        this.initializeRoutes({auth, csrfMiddleware, borrowController})
         return this.router;
     }
 
-    initializeRoutes({borrowController}) {
+    initializeRoutes({auth, csrfMiddleware, borrowController}) {
         this.router.route('/borrow')
             .get(borrowController.getAll)
-            .post(borrowController.create);
+            .post(auth.authenticate, csrfMiddleware, borrowController.create);
         this.router.route('/borrows/:borrowId')
             .get(borrowController.getBorrowById);
             // .patch(borrowController.returnResource);
