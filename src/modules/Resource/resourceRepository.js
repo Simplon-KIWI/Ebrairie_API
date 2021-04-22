@@ -9,9 +9,9 @@ class ResourceRepository {
         return await this.resourceDao.findAll();
     }
 
- //   async findById(id) {
- //       return await this.resourceDao.findOne({ where: { id : resource.id } });
- //   }
+  async findOne(id) {
+       return await this.resourceDao.findOne({ where: { id : id } });
+   }
 
     async create(resourceEntity) {
         return await this.resourceDao.create(resourceEntity);

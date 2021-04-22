@@ -10,11 +10,10 @@ class ResourceService {
         return resources.map((resource) => new ResourceEntity(resource)); 
     }
 
- //   async getOne(id) {
- //       const resourcesById = await this.resourceRepo.findOne(id);
- //       console.log(resourceById);
- //       return resourcesById; 
- //   }
+   async getOne(id) {
+      const resourcesById = await this.resourceRepo.findOne(id);
+        return resourcesById; 
+    }
 
     async create(resourceData) {
         const resourceEntity = new ResourceEntity(resourceData);

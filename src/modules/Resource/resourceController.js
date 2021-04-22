@@ -15,9 +15,9 @@ class ResourceController {
     }
 
 
-    getOne = async ({res}) => {
+    getOne = async (req, res) => {
         try {
-            let resources = await this.resourceService.getOne(id);
+            let resources = await this.resourceService.getOne(req.params.id);
             res.status(200).json(resources);
         } catch (err) {
             console.error(err);
