@@ -2,13 +2,13 @@ import { createContainer, Lifetime, asClass, asValue } from 'awilix';
 import express, { Router } from 'express';
 import Server from './config/server';
 import config from './config/env';
-import ModelsTest from './modules/Borrow/borrowDao';
 import bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
 import cookieParser from 'cookie-parser';
 import jwt from 'jsonwebtoken';
 import csurf from 'csurf';
 import nodemailer from 'nodemailer';
+import db from './config/database';
 
 const container = createContainer();
 const router = Router();
@@ -44,6 +44,16 @@ container.loadModules(['modules/**/*Dao.js'], {
   cwd: __dirname,
 });
 
+
+// Resolve and associate the DAOs 
+
+const daoNames = Object.keys(container.registrations).filter((item) => item.match(/Dao$/g));
+daoNames.map((dao) => container.resolve(dao)).map((dao) => dao.associate(db.sequelize.models));
+
+// database migration (alter option update the tables schema without erasing any data)
+
+db.sequelize.sync({alter: true});
+
 // Resolve the registered routes
 const routesName = Object.keys(container.registrations).filter((item) =>
   item.match(/Router$/g)
@@ -51,21 +61,10 @@ const routesName = Object.keys(container.registrations).filter((item) =>
 const routes = routesName.map((route) => container.resolve(route));
 
 
-
-// Association models
-const Sequelize = require('sequelize');
-
-const modelName = Object.keys(container.registrations).filter((item) =>
-  item.match(/Router$/g)
-);
-const ModelsTest2 = modelName.map((model) => container.resolve(model));
-
-
 // register all the routes and the server
 container.register({
   routes: asValue(routes),
   server: asClass(Server).singleton(),
-  models: asClass(ModelsTest),
 });
 
 export default container;

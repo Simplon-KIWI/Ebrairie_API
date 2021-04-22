@@ -1,31 +1,23 @@
-import { Model, DataTypes } from 'sequelize';
+import { Model, DataTypes, Sequelize } from 'sequelize';
 import db from '../../config/database';
 
 class BorrowDao extends Model {
   static init(sequelize) {
     return super.init(
       {
-        userId: DataTypes.UUID,
-        resourceId: DataTypes.UUID,
-        resourceTitle: DataTypes.STRING,
+        id: {
+          type: DataTypes.UUID,
+          defaultValue: Sequelize.UUIDV4,
+          allowNull: false,
+          primaryKey: true,
+        },
         transaction: DataTypes.STRING,
       },
       { sequelize, modelName: 'Borrow' }
     );
   }
-  static associate(models) {
+  static associate() {
     //define association here
-
-    // this.belongsTo(
-    //     models.UserDao,{
-    //       foreignKey: "userId",
-    //     }
-    //   );
-      this.hasMany(models.ResourceDao, {
-        foreignKey: {
-            name:"resourceId",
-        }
-      });
     return this;
   }
   

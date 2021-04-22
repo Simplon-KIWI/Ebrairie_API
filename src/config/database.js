@@ -11,5 +11,5 @@ const sequelize = new Sequelize(
   { host: config.db_host, dialect: 'mysql', port: config.db_port}
 );
 const db = { sequelize, Sequelize };
-sequelize.sync();
+//sequelize.sync();
 export default db;

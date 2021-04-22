@@ -25,11 +25,13 @@ class UserDao extends Model {
     );
   }
   static associate(models) {
-    // this.hasMany(models.Borrow, {
-    //   foreignKey: {
-    //     name: 'user_id',
-    //   },
-    // });
+
+    this.belongsToMany(models.Resource, { 
+      as: "userBorrow",
+    through: 'Borrow',
+   //  foreignKey:  'user_id',
+   });
+
     return this;
   }
 }

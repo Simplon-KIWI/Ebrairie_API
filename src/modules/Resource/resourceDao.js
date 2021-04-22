@@ -1,11 +1,16 @@
-import { Model, DataTypes } from 'sequelize';
+import { Model, DataTypes, Sequelize, INTEGER } from 'sequelize';
 import db from '../../config/database';
 
 class ResourceDao extends Model {
   static init(sequelize) {
     return super.init(
       {
-        borrowId: DataTypes.UUID,
+          id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true,
+          },
         title: DataTypes.STRING,
         page_number: DataTypes.INTEGER,
         publication_date: DataTypes.DATE,
@@ -16,12 +21,14 @@ class ResourceDao extends Model {
     );
   }
   static associate(models) {
-    //define association here
-    this.hasOne(models.Location, { foreignKey : 'location_id'})
+    this.belongsToMany(models.User, { 
+      as: 'resourceBorrow',
+      through: 'Borrow',
+   //  foreignKey : 'resource_id',
+    });
     return this;
   }
-  
-};
+}
 
 ResourceDao.init(db.sequelize);
 
