@@ -8,7 +8,11 @@ class ResourceRouter {
     initializeRoutes({resourceController}) {
         this.router.route('/resources')
             .get(resourceController.getAll)
+            
             .post(resourceController.create);
+        
+        this.router.route('/resources/:id')
+        .get(resourceController.getOne)
     }
 }
 
