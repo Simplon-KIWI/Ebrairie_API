@@ -1,4 +1,4 @@
-import LocationEntity from './LocationEntity';
+import LocationEntity from './locationEntity';
 
 class LocationService {
     constructor({locationRepository}) {

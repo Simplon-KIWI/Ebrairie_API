@@ -23,8 +23,12 @@ class ResourceDao extends Model {
   static associate(models) {
     this.belongsToMany(models.User, { 
       as: 'resourceBorrow',
-      through: 'Borrow',
-   //  foreignKey : 'resource_id',
+      through: {
+        model: 'Borrow',
+        unique: false,
+      },
+      foreignKey : 'resource_id',
+      constraints: false,
     });
     return this;
   }

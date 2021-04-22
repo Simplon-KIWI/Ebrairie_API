@@ -37,10 +37,9 @@ class BorrowController {
         try {
             let borrows = await this.borrowService.getBorrowById(req.params.borrowId);
 
-            console.log("🚀 ~ file: borrowController.js ~ line 42 ~ BorrowController ~ getBorrowById= ~ borrows", borrows)
+            // console.log("🚀 ~ file: borrowController.js ~ line 42 ~ BorrowController ~ getBorrowById= ~ borrows", borrows)
 
             if (borrows) {
-               console.log("PLEASE WORK")
                 res.status(201).json({ borrows: borrows })   
             }
 

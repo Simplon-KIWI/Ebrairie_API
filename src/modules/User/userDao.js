@@ -28,8 +28,12 @@ class UserDao extends Model {
 
     this.belongsToMany(models.Resource, { 
       as: "userBorrow",
-    through: 'Borrow',
-   //  foreignKey:  'user_id',
+      through: {
+        model: 'Borrow',
+        unique: false,
+      },
+      foreignKey:  'user_id',
+      constraints: false,
    });
 
     return this;
