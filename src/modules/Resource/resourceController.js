@@ -13,6 +13,18 @@ class ResourceController {
             res.status(400).json(err.message);
         }
     }
+
+
+    getOne = async (req, res) => {
+        try {
+            let resources = await this.resourceService.getOne(req.params.id);
+            res.status(200).json(resources);
+        } catch (err) {
+            console.error(err);
+            res.status(400).json(err.message);
+        }
+    }
+
     create = async (req, res) => {
         try {
             const resource = await this.resourceService.create({...req.body});
@@ -22,6 +34,8 @@ class ResourceController {
             res.status(400).json(err.message);
         }
     } 
+
+ 
 
 }
 
