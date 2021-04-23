@@ -1,4 +1,4 @@
-import ResourceEntity from "./resourceEntity";
+import ResourceEntity from "../Resource/resourceEntity.js";
 // import ResourceEntity from "./resourceEntity";
 import { Op } from "sequelize";
 
@@ -18,4 +18,4 @@ class ResourceAuthorRepository {
     }
 }
 
-export default ResourceRepository;
+export default ResourceAuthorRepository;

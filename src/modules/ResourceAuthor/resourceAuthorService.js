@@ -1,6 +1,6 @@
 import ResourceAuthorEntity from './resourceAuthorEntity';
 
-class ResourceService {
+class ResourceAuthorService {
     constructor({resourceAuthorRepository}) {
         this.resourceAuthorRepo = resourceAuthorRepository;
     }
@@ -32,4 +32,4 @@ class ResourceService {
     // }
 }
 
-export default ResourceService;
+export default ResourceAuthorService;

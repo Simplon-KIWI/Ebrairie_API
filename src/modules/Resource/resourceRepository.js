@@ -1,11 +1,9 @@
 import ResourceEntity from "./resourceEntity";
-// import ResourceEntity from "./resourceEntity";
 import { Op } from "sequelize";
 
 class ResourceRepository {
-    constructor({resourceDao, resourceAuthorDao, resourceEntity, resourceAuthorService}) {
+constructor({resourceDao}, resourceAuthorService) {
         this.resourceDao = resourceDao;
-        this.resourceAuthorDao = resourceAuthorDao;
         this.resourceAuthorService = resourceAuthorService;
     }
 
@@ -26,7 +24,7 @@ class ResourceRepository {
             author_id : author_id,
             resource_id : createdResource.id
         }
-        await this.resourceAuthorService.create(resourceAuthor.resource_id, resourceAuthor.author_id)
+        //await this.resourceAuthorService.create(resourceAuthor.resource_id, resourceAuthor.author_id)
         return createdResource;
     }
 
