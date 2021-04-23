@@ -3,8 +3,10 @@ import ResourceEntity from "./resourceEntity";
 import { Op } from "sequelize";
 
 class ResourceRepository {
-    constructor({resourceDao}) {
+    constructor({resourceDao, resourceAuthorDao, resourceEntity, resourceAuthorService}) {
         this.resourceDao = resourceDao;
+        this.resourceAuthorDao = resourceAuthorDao;
+        this.resourceAuthorService = resourceAuthorService;
     }
 
     async findAll() {
@@ -16,9 +18,16 @@ class ResourceRepository {
    }
 
     async create(resourceEntity) {
-        console.log(resourceEntity)
+        const author_id = resourceEntity.author_id
 
-        return await this.resourceDao.create(resourceEntity);
+        // const resourceEntity.author_id = resourceAuthorEntity.author_id
+        const createdResource = await this.resourceDao.create(resourceEntity);
+        const resourceAuthor = {
+            author_id : author_id,
+            resource_id : createdResource.id
+        }
+        await this.resourceAuthorService.create(resourceAuthor.resource_id, resourceAuthor.author_id)
+        return createdResource;
     }
 
     async search(value) {
