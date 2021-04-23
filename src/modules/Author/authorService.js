@@ -16,7 +16,6 @@ class AuthorService {
     }
 
     async create(authorData) {
-        console.log("HERE/////////////////////////", authorData);
         const authorEntity = new AuthorEntity(authorData);
         const newAuthor = await this.authorRepo.create(authorEntity);
         return new AuthorEntity(newAuthor);

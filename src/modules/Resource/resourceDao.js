@@ -15,7 +15,6 @@ class ResourceDao extends Model {
         page_number: DataTypes.INTEGER,
         publication_date: DataTypes.DATE,
         description: DataTypes.STRING,
-        author: DataTypes.STRING,
         genre: DataTypes.STRING,
         category: DataTypes.STRING,
         quantity: DataTypes.INTEGER,

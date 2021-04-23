@@ -24,6 +24,7 @@ unique: false,
 },
 foreignKey: 'author_id',
 });
+
 return this;
 }
 }

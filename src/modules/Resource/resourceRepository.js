@@ -16,6 +16,8 @@ class ResourceRepository {
    }
 
     async create(resourceEntity) {
+        console.log(resourceEntity)
+
         return await this.resourceDao.create(resourceEntity);
     }
 
