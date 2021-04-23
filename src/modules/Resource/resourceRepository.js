@@ -23,7 +23,7 @@ class ResourceRepository {
         return await this.resourceDao.findAll({
             where: {
                 title : {
-                    [Op.like] : `${value}%`
+                    [Op.like] : `%${value}%`
                 }
             }
         });
