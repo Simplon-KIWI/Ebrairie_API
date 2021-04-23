@@ -10,8 +10,8 @@ class BorrowRouter {
             .get(borrowController.getAll)
             .post(auth.authenticate, csrfMiddleware, borrowController.create);
         this.router.route('/borrows/:borrowId')
-            .get(borrowController.getBorrowById);
-            // .patch(borrowController.returnResource);
+            .get(borrowController.getBorrowById)
+            .put(auth.authenticate, csrfMiddleware, borrowController.returnResource);
     }
 }
 

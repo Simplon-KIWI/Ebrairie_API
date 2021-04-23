@@ -9,9 +9,9 @@ class BorrowRepository {
     async create(borrowEntity) {
         return await this.borrowDao.create(borrowEntity);
     }
-    // async returnResource(borrowEntity) {
-    //     return await TouchList.borrowDao.returnResource(borrowEntity);
-    // }
+    async returnResource(borrowEntity, borrowId) {
+        return await this.borrowDao.update(borrowEntity, { where : {id : borrowId}});
+    }
     async findOne(borrowId) {
         console.log("_____ enter in REPO findOne")
         return await this.borrowDao.findOne({where: {id: borrowId}});
