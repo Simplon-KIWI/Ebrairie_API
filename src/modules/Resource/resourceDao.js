@@ -33,6 +33,17 @@ class ResourceDao extends Model {
       foreignKey: 'resource_id',
       constraints: false,
     });
+
+    this.belongsToMany(models.Author, {
+      as: 'resourceAuthor',
+      through: {
+        model: 'ResourceAuthor',
+        unique: false,
+      },
+      foreignKey: 'resource_id',
+    });
+
+
     this.belongsTo(models.Location, {
       foreignKey: 'location_id',
     });
