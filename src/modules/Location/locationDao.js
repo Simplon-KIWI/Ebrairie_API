@@ -12,12 +12,13 @@ class LocationDao extends Model {
     );
   }
   static associate(models) {
-    //define association here
-    
+    this.hasMany(models.Resource, {
+      foreignKey: 'location_id',
+    });
+
     return this;
   }
-  
-};
+}
 
 LocationDao.init(db.sequelize);
 
