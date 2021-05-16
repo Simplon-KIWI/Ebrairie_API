@@ -6,10 +6,10 @@ class BorrowDao extends Model {
     return super.init(
       {
         id: {
-          type: DataTypes.UUID,
-          defaultValue: Sequelize.UUIDV4,
+          type: DataTypes.INTEGER,
           allowNull: false,
           primaryKey: true,
+          autoIncrement: true,
         },
         transaction: DataTypes.STRING,
       },
