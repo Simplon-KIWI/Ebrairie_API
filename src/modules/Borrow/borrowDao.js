@@ -1,4 +1,4 @@
-import { Model, DataTypes, Sequelize } from 'sequelize';
+import { Model, DataTypes } from 'sequelize';
 import db from '../../config/database';
 
 class BorrowDao extends Model {
@@ -11,13 +11,20 @@ class BorrowDao extends Model {
           primaryKey: true,
           autoIncrement: true,
         },
+        resource_quantity: DataTypes.INTEGER,
         transaction: DataTypes.STRING,
       },
       { sequelize, modelName: 'Borrow' }
     );
   }
-  static associate() {
-    //define association here
+  static associate(models) {
+    this.belongsTo(models.Resource, {
+      foreignKey: 'resource_quantity',
+      unique: false,
+    })
+    this.belongsTo(models.Resource, {
+      foreignKey: 'resource_id',
+    })
     return this;
   }
   
