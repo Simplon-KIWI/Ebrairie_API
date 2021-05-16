@@ -13,7 +13,13 @@ class BorrowService {
     async create(borrowData) {
         const borrowEntity = new BorrowEntity(borrowData);
         const newBorrow = await this.borrowRepo.create(borrowEntity);
-        return new BorrowEntity(newBorrow);
+        if (borrowEntity.validateQuantity()) {
+            return new BorrowEntity(newBorrow);
+        } else {
+            console.log("===> Il n'y a plus de ressource de ce titre")
+            return borrowEntity.resource_quantity
+        }
+        
     }
     async returnResource(borrowData, borrowId) {
         const borrowEntity = new BorrowEntity(borrowData);
