@@ -7,7 +7,7 @@ class LocationService {
 
     async getAll() {
         const locations = await this.locationRepo.findAll();
-        return locations.map((location) => new locationEntity(location)); 
+        return locations.map((location) => new LocationEntity(location)); 
     }
 
     async getOne(id) {

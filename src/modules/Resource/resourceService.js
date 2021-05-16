@@ -24,6 +24,9 @@ class ResourceService {
     async search (value) {
         const resultSearchResources = await this.resourceRepo.search(value);
         resultSearchResources.map((resource) => new ResourceEntity(resource)); 
+        if (resultSearchResources.length === 0) {
+            return `Sorry, there is no resource matching with ${value}`
+        }
         return resultSearchResources;
         console.log(resources);
     }

@@ -5,30 +5,46 @@ class ResourceDao extends Model {
   static init(sequelize) {
     return super.init(
       {
-          id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true,
-          },
+        id: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          primaryKey: true,
+          autoIncrement: true,
+        },
         title: DataTypes.STRING,
         page_number: DataTypes.INTEGER,
         publication_date: DataTypes.DATE,
         description: DataTypes.STRING,
+        genre: DataTypes.STRING,
+        category: DataTypes.STRING,
         quantity: DataTypes.INTEGER,
       },
       { sequelize, modelName: 'Resource' }
     );
   }
   static associate(models) {
-    this.belongsToMany(models.User, { 
+    this.belongsToMany(models.User, {
       as: 'resourceBorrow',
       through: {
         model: 'Borrow',
         unique: false,
       },
-      foreignKey : 'resource_id',
+      foreignKey: 'resource_id',
       constraints: false,
+    });
+
+    this.belongsToMany(models.Author, {
+      as: 'resourceAuthor',
+      through: {
+        model: 'ResourceAuthor',
+        unique: false,
+      },
+      foreignKey: 'resource_id',
+    });
+
+
+    this.belongsTo(models.Location, {
+      foreignKey: 'location_id',
     });
     return this;
   }

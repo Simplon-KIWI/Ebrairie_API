@@ -1,22 +1,22 @@
 class LocationRouter {
-    constructor({router, locationController}) {
+    constructor({router, auth, csrfMiddleware, locationController}) {
         this.router = router;
-        this.initializeRoutes({locationController})
+        this.initializeRoutes({auth, csrfMiddleware, locationController})
         return this.router;
     }
     
-    initializeRoutes({locationController}) {
+    initializeRoutes({auth, csrfMiddleware, locationController}) {
         this.router.route('/locations')
             .get(locationController.getAll)
-            .post(locationController.create);
+            .post(auth.authenticate, csrfMiddleware, locationController.create);
 
         this.router.route('/locations/:id')
             .get(locationController.getOne)
         this.router.route('/locations/edit/:id')
-            .put(locationController.edit)
+            .put(auth.authenticate, csrfMiddleware, locationController.edit)
 
         this.router.route('/locations/delete/:id')
-            .delete(locationController.deleteOne)
+            .delete(auth.authenticate, csrfMiddleware, locationController.deleteOne)
 
         
 
