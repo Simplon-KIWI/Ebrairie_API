@@ -38,7 +38,7 @@ class UserController {
     try {
       const user = await this.userService.loginAdmin({ ...req.body });
       const token = await this.jwt.generateToken({ id: user.id });
-      res.cookie('auth-cookie', token, { maxAge: 3600, httpOnly: true });
+      res.cookie('auth-cookie', token, { expires: false, httpOnly: true });
       res.status(200).json(user);
     } catch (err) {
       console.error(err);
