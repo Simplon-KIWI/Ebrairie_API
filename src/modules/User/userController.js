@@ -38,11 +38,21 @@ class UserController {
     try {
       const user = await this.userService.loginAdmin({ ...req.body });
       const token = await this.jwt.generateToken({ id: user.id });
-      res.cookie('auth-cookie', token, { maxAge: 3600 });
+      res.cookie('auth-cookie', token, { maxAge: 3600, httpOnly: true });
       res.status(200).json(user);
     } catch (err) {
       console.error(err);
       res.status(400).json(err.message);
+    }
+  };
+
+  me = async (req, res, next) => {
+    try {
+      console.log('req me :', req.currentUserId);
+      const user = await this.userService.me(req.currentUserId);
+      res.status(200).json(user);
+    } catch (err) {
+      next(err);
     }
   };
 }

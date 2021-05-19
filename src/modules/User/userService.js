@@ -43,6 +43,12 @@ class UserService {
 
     return new UserEntity(user);
   }
+
+  async me(userId) {
+    const user = await this.userRepo.findById(userId);
+    if (!user) throw new Error('Account do not exist');
+    return new UserEntity(user);
+  }
 }
 
 export default UserService;

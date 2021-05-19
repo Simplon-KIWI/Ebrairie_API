@@ -14,6 +14,8 @@ class UserRouter {
     this.router.route('/admin/register').post(userController.registerAdmin);
 
     this.router.route('/admin/authenticate').post(userController.loginAdmin);
+
+    this.router.route('/admin/me').get(auth.authenticate, userController.me);
   }
 }
 

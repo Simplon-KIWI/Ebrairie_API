@@ -27,6 +27,11 @@ class UserRepository {
     return await this.userDao.findOne({ where: { email: userEntity.email } });
   }
 
+  async findById(userId) {
+    // return await this.userDao.findByPk(userId);
+    return await this.userDao.findOne({ where: { id: userId } });
+  }
+
   compareHash = async (password, hash) =>
     await this.bcrypt.compareSync(password, hash);
 }
