@@ -1,3 +1,5 @@
+import cors from 'cors';
+
 class Server {
   constructor({ express, routes, cookieParser, csrfMiddleware }) {
     this.app = express();
@@ -9,6 +11,12 @@ class Server {
   initializeBodyParsing(express) {
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(express.json());
+    this.app.use(
+      cors({
+        origin: 'http://localhost:1234',
+        credentials: true,
+      })
+    );
   }
 
   initializeMiddlewares({ cookieParser, csrfMiddleware }) {
